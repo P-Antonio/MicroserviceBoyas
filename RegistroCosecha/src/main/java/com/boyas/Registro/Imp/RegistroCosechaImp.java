@@ -3,6 +3,8 @@ package com.boyas.Registro.Imp;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import com.boyas.Registro.Entity.RegistroCosecha;
 import com.boyas.Registro.Repository.RegistroRepository;
@@ -20,7 +22,7 @@ public class RegistroCosechaImp implements RegistroService{
 	}
 
 	@Override
-	public RegistroCosecha findById(Long id) {
+	public RegistroCosecha findById(String id) {
 		return registroRepository.findById(id).orElseThrow();
 	}
 
@@ -31,8 +33,13 @@ public class RegistroCosechaImp implements RegistroService{
 	}
 
 	@Override
-	public void deleteById(Long id) {
+	public void deleteById(String id) {
 		registroRepository.deleteById(id);
+	}
+
+	@Override
+	public Page<RegistroCosecha> findById(Pageable page) {
+		return registroRepository.findByFechaCosecha(page);
 	}
 	
 	
