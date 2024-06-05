@@ -1,7 +1,5 @@
 package com.boyas.Registro.Controller.DTO;
 
-import java.time.LocalDate;
-
 import com.boyas.Registro.Entity.EnumArandanos;
 import com.boyas.Registro.Entity.EnumModulos;
 
