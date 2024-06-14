@@ -8,14 +8,20 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.boyas.cosechador.Controller.DTO.RegistroCosechaDTO;
 import com.boyas.cosechador.Entity.Cosechador;
 import com.boyas.cosechador.Repository.CosechadorRepository;
+import com.boyas.cosechador.client.CosechaClient;
+import com.boyas.cosechador.http.Response.FindCosechaByIdCosechador;
 
 @Service
 public class CosechadorIMP implements CosechadorService {
 
 	@Autowired
 	private CosechadorRepository cosechadorRepository;
+	
+	@Autowired
+	private CosechaClient cosechaClient;
 	
 	@Override
 	@Transactional(readOnly = true)
@@ -50,8 +56,27 @@ public class CosechadorIMP implements CosechadorService {
 
 	@Override
 	@Transactional(readOnly = true)
-	public Page<Cosechador> findAllByNombre(Pageable page) {
-		return cosechadorRepository.findAllByNombre(page);
+	public Page<Cosechador> findByNombre(Pageable page) {
+		return cosechadorRepository.findByNombreIsNotNull(page);
+	}
+
+	@Override
+	public List<Cosechador> findByIdCosecha(Long idCosecha) {
+		return cosechadorRepository.findByIdCosecha(idCosecha);
+	}
+
+	@Override
+	public FindCosechaByIdCosechador findCosechaByIdCosechador(Long id) {
+		// encontrar cosechador
+		Cosechador cosechador = cosechadorRepository.findById(id).orElseThrow();
+		// encontrar cosecha
+		List<RegistroCosechaDTO> listaRegistroCosecha = cosechaClient.findAllByIdCosechador(id);
+		return FindCosechaByIdCosechador.builder()
+				.id(cosechador.getId())
+				.nombre(cosechador.getNombre())
+				.identificacion(cosechador.getIdentificacion())
+				.listaRegistro(listaRegistroCosecha)
+				.build();
 	}
 
 }

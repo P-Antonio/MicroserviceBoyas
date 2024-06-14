@@ -12,6 +12,6 @@ import com.boyas.ventas.Entity.Ventas;
 @Repository
 public interface VentasRepository extends JpaRepository<Ventas, Long> {
 
-	Page<Ventas> findAllByFechaPedido(Pageable pageable);
+	Page<Ventas> findAllByFechaPedidoIsNotEmpty (Pageable pageable);
 
 }

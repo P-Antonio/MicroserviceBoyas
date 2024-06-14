@@ -26,6 +26,7 @@ public class RegistroCosecha {
 	private EnumModulos modulos;
 	private EnumArandanos tipoArandano;
 	private LocalDate fechaCosecha = LocalDate.now();
+	private Long idCosechador;
 	
 	
 	public RegistroCosecha(DatosRegistro datos) {

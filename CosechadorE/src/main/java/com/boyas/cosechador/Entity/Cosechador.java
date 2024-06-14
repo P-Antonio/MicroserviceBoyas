@@ -14,14 +14,15 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-@Entity
-@Table
+@Entity (name = "Cosechador")
+@Table (name = "Cosechadores")
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
@@ -38,16 +39,17 @@ public class Cosechador {
 	private Integer identificacion;
 	private String email;
 	private Integer telefono;
-	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToOne(targetEntity = Direccion.class ,fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private Direccion direccion;
 	@Column(name = "Fecha_Inicio_Contrato")
 	private Date fechaInicioContrato;
 	@Column(name = "Fecha_Fin_Contrato")
 	private Date fechaFinContrato;
 	private boolean habil = true;
+	private Long idCosecha;
 	
 	
-	public Cosechador(DatosCosechador datos) {
+	public Cosechador(@Valid DatosCosechador datos) {
 		this.nombre = datos.nombre();
 		this.apellido = datos.apellido();
 		this.identificacion = datos.identificacion();

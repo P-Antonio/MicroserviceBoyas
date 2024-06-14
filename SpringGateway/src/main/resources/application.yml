@@ -1,1 +1,6 @@
-spring.application.name=Spring-Gateway
+spring:
+  application:
+    name: mcsv-Gateway
+    
+  config:
+    import: optional:configserver:http://localhost:8888

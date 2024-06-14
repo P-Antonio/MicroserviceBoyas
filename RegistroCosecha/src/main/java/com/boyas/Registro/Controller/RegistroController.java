@@ -22,6 +22,7 @@ import com.boyas.Registro.Entity.RegistroCosecha;
 import com.boyas.Registro.Service.RegistroService;
 
 import jakarta.validation.Valid;
+import jakarta.ws.rs.Path;
 
 @RestController
 @RequestMapping("/registro")
@@ -62,5 +63,15 @@ public class RegistroController {
 	public ResponseEntity<?> eliminarRegistroCosecha (@PathVariable String id){
 		registroService.deleteById(id);
 		return ResponseEntity.noContent().build();
+	}
+	
+	@GetMapping("/search-cosecha/{idCosechador}")
+	public ResponseEntity<?> obtenerCosechaByIdCosechador (@PathVariable Long idCosechador){
+		return ResponseEntity.ok(registroService.findByIdCosechador(idCosechador));
+	}
+	
+	@GetMapping("/search-cosechador/{idCosecha}")
+	public ResponseEntity<?> obtenerCosechadorByIdCosecha (@PathVariable String idCosecha){
+		return ResponseEntity.ok(registroService.findCosechadorByIdCosecha(idCosecha));
 	}
 }

@@ -1,5 +1,6 @@
 package com.boyas.Registro.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.domain.Page;
@@ -17,5 +18,7 @@ public interface RegistroRepository extends MongoRepository<RegistroCosecha, Lon
 	Optional<RegistroCosecha> findById(String id);
 
 	void deleteById(String id);
+	
+	List<RegistroCosecha> findByIdCosechador (Long idCosechador);
 
 }

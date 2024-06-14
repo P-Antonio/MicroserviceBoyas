@@ -7,21 +7,22 @@ import com.boyas.cosechador.Entity.Direccion;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 public record DatosCosechador(
 		@NotBlank
 		String nombre, 
 		@NotBlank
 		String apellido,
-		@NotBlank
+		@NotNull
 		Integer identificacion,
 		@Email
 		String email,
-		@NotBlank
+		@NotNull
 		Integer telefono,
 		@Valid
 		Direccion direccion,
-		@NotBlank
+		@NotNull
 		Date fechaInicioContrato) {
 
 }

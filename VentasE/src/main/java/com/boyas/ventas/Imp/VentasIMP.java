@@ -6,13 +6,14 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.boyas.ventas.Entity.Ventas;
 import com.boyas.ventas.Repository.VentasRepository;
 import com.boyas.ventas.service.VentasService;
 
-
+@Service
 public class VentasIMP implements VentasService{
 
 	@Autowired
@@ -45,7 +46,7 @@ public class VentasIMP implements VentasService{
 
 	@Override
 	public Page<Ventas> findAllByFechaPedido(Pageable pageable) {
-		return ventasRepository.findAllByFechaPedido(pageable);
+		return ventasRepository.findAllByFechaPedidoIsNotEmpty(pageable);
 	}
 
 }

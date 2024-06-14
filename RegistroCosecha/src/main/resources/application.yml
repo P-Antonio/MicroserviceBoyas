@@ -1,6 +1,6 @@
 spring:
   application:
-    name: mscv-RegistroCosecha
+    name: mcsv-RegistroCosecha
 
   config:
     import:

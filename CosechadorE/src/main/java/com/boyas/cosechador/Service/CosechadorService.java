@@ -6,6 +6,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import com.boyas.cosechador.Entity.Cosechador;
+import com.boyas.cosechador.http.Response.FindCosechaByIdCosechador;
 
 public interface CosechadorService {
 
@@ -14,5 +15,7 @@ public interface CosechadorService {
 	void save(Cosechador cosechador);
 	void eliminarById(Long id);
 	Cosechador findByIdentificacion (Integer identificacion);
-	Page<Cosechador>  findAllByNombre (Pageable page);
+	Page<Cosechador>  findByNombre (Pageable page);
+	List<Cosechador> findByIdCosecha(Long idCosecha);
+	FindCosechaByIdCosechador findCosechaByIdCosechador (Long id);
 }

@@ -31,7 +31,7 @@ public class CosechadorController {
 	
 	@GetMapping
 	public ResponseEntity<?> obtenerCosechadores (@PageableDefault (size = 4, sort = "{nombre}") Pageable page){
-		var pagina = cosechadorService.findAllByNombre(page).map(RetornoDatosCosechador :: new);
+		var pagina = cosechadorService.findByNombre(page).map(RetornoDatosCosechador :: new);
 		return ResponseEntity.ok(pagina);
 	}
 	
@@ -63,5 +63,15 @@ public class CosechadorController {
 		inhabilitarTrabajador.eliminar();
 		
 		return ResponseEntity.noContent().build();
+	}
+	
+	@GetMapping("/search/registroCosecha/{idCosecha}")
+	public ResponseEntity<?> obtenerRegistroCosecha (@PathVariable Long idCosecha){
+		return ResponseEntity.ok(cosechadorService.findByIdCosecha(idCosecha));
+	}
+	
+	@GetMapping("search-cosecha/{idCosechador}")
+	public ResponseEntity<?> obtenerCosechaByIdCosechador (@PathVariable Long idCosechador){
+		return ResponseEntity.ok(cosechadorService.findCosechaByIdCosechador(idCosechador));
 	}
 }

@@ -9,3 +9,16 @@ spring:
       discovery:
         locator:
           enable: true
+      routes:
+        - id: Cosechador
+          uri: http://localhost:8090
+          predicates:
+            - Path=/cosechador/**
+        - id: RegistroCosecha
+          uri: http://localhost:8091
+          predicates:
+            - Path=/registro/**
+
+eureka:
+  client:
+    register-with-eureka: false

@@ -13,8 +13,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-@Entity
-@Table
+@Entity (name = "Direccion")
+@Table (name = "Direcciones")
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
